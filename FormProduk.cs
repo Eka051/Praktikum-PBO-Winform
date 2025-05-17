@@ -66,7 +66,6 @@ namespace Praktikum_PBO_Winform
 
         public void LoadProduk()
         {
-            dataGridView1.Rows.Clear();
             string query = "SELECT product_id, nama_produk, harga_produk, stok FROM products WHERE user_id = @userId";
 
             using (NpgsqlConnection conn = new NpgsqlConnection(connStr))
@@ -78,17 +77,24 @@ namespace Praktikum_PBO_Winform
                     {
                         cmd.Parameters.AddWithValue("@userId", _userId);
 
-                        using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                        using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(cmd))
                         {
-                            while (reader.Read())
-                            {
-                                int productId = reader.GetInt32(0);
-                                string namaProduk = reader.GetString(1);
-                                int hargaProduk = reader.GetInt32(2);
-                                int stok = reader.GetInt32(3);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
 
-                                dataGridView1.Rows.Add(productId, namaProduk, hargaProduk, stok);
-                            }
+                            dataGridView1.DataSource = dt;
+
+                            if (dataGridView1.Columns.Contains("product_id"))
+                                dataGridView1.Columns["product_id"].HeaderText = "ID Produk";
+
+                            if (dataGridView1.Columns.Contains("nama_produk"))
+                                dataGridView1.Columns["nama_produk"].HeaderText = "Nama Produk";
+
+                            if (dataGridView1.Columns.Contains("harga_produk"))
+                                dataGridView1.Columns["harga_produk"].HeaderText = "Harga Produk";
+
+                            if (dataGridView1.Columns.Contains("stok"))
+                                dataGridView1.Columns["stok"].HeaderText = "Stok Produk";
                         }
                     }
                 }
@@ -102,5 +108,6 @@ namespace Praktikum_PBO_Winform
                 }
             }
         }
+
     }
 }
