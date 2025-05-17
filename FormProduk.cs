@@ -61,7 +61,8 @@ namespace Praktikum_PBO_Winform
             TambahProduk(nama, harga, stok);
             tbNamaProduk.Clear();
             tbHargaProduk.Clear();
-            tbStokProduk.Clear();
+   
+
         }
 
         public void LoadProduk()
@@ -104,10 +105,11 @@ namespace Praktikum_PBO_Winform
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Terjadi kesalahan tidak terduga: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Terjadi kesalahan : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
     }
+
 }
