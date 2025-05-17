@@ -24,7 +24,7 @@ namespace Praktikum_PBO_Winform
         public bool Validate(string username, string password, out int userId)
         {
             userId = 0;
-            string connStr = "Host=localhost;Username=postgres;Password=dianeka@05;Database=PBO_CRUD";
+            string connStr = "Host=localhost;Username=postgres;Password=Gunungsari;Database=CRUDPR";
             string query = "SELECT user_id, username FROM users WHERE username = @username AND password = @password";
             using (NpgsqlConnection conn = new NpgsqlConnection(connStr))
             {

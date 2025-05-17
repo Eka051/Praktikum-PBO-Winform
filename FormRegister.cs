@@ -32,7 +32,7 @@ namespace Praktikum_PBO_Winform
 
         public bool Register(string username, string password)
         {
-            string connStr = "Host=localhost;Username=postgres;Password=dianeka@05;Database=PBO_CRUD";
+            string connStr = "Host=localhost;Username=postgres;Password=Gunungsari;Database=CRUDPR";
             string query_select = "SELECT * FROM users WHERE username = @username";
             using (NpgsqlConnection conn = new NpgsqlConnection(connStr))
             {
